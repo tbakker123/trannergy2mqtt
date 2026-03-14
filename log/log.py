@@ -28,7 +28,7 @@ V1.2.0
 
 V1.1.0
   31-10-2021
-  Disable syslog handler for non linux platforms
+  Disable  handler for non linux platforms
 
 V0.1:
 - initial version
@@ -56,7 +56,7 @@ V0.1:
 # ------------------------------------------------------------------------------------
 import __main__
 import logging
-from logging.handlers import SysLogHandler
+from logging import Handler
 import os
 import sys
 import getpass
@@ -81,16 +81,16 @@ c_format = logging.Formatter('%(name)s %(levelname)s: FUNCTION:%(funcName)s LINE
 c_handler.setFormatter(c_format)
 logger.addHandler(c_handler)
 
-# Syslog
-if sys.platform == "linux":
-  s_handler = logging.handlers.SysLogHandler(address='/dev/log')
-  # This setLevel determines which messages are processed by this handler (assuming it arrives from global logger)
-  s_handler.setLevel(logging.INFO)
-  s_format = logging.Formatter('%(name)s[%(process)d] %(levelname)s: '
-                               '%(asctime)s FUNCTION:%(funcName)s LINE:%(lineno)d: %(message)s',
-                               datefmt='%H:%M:%S')
-  s_handler.setFormatter(s_format)
-  logger.addHandler(s_handler)
+# 
+# if sys.platform == "linux":
+#   s_handler = logging.handlers.Handler(address='/dev/log')
+#   # This setLevel determines which messages are processed by this handler (assuming it arrives from global logger)
+#   s_handler.setLevel(logging.INFO)
+#   s_format = logging.Formatter('%(name)s[%(process)d] %(levelname)s: '
+#                                '%(asctime)s FUNCTION:%(funcName)s LINE:%(lineno)d: %(message)s',
+#                                datefmt='%H:%M:%S')
+#   s_handler.setFormatter(s_format)
+#   logger.addHandler(s_handler)
 
 
 # File
