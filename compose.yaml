@@ -1,0 +1,12 @@
+services:
+  trannergy2mqtt:
+    build: .
+    container_name: trannergy-mqtt
+    restart: unless-stopped
+    volumes:
+      - ./config.py:/app/config.py
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "trannergy-mqtt.py"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
