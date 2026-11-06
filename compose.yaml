@@ -6,7 +6,7 @@ services:
     volumes:
       - ./config.py:/app/config.py
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "trannergy-mqtt.py"]
+      test: ["CMD-SHELL", "grep -qa 'trannergy-mqtt.py' /proc/[0-9]*/cmdline || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 3
