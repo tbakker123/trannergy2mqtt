@@ -3,6 +3,8 @@ services:
     build: .
     container_name: trannergy-mqtt
     restart: unless-stopped
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"
     volumes:
       - ./config.py:/app/config.py
     healthcheck:
